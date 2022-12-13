@@ -6,9 +6,6 @@ class Entry_schema(BaseModel):
     topic : str
     state : str
     country : str
-    # is_delete : bool
-    # created_at : str
-    # updated_at : str
     competition_id : int
 
     class Config:

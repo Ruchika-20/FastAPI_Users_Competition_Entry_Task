@@ -6,10 +6,6 @@ class User_schema(BaseModel):
     name : str
     birthdate : date               
     gender : str 
-    # created_at : str
-    # updated_at : str
-    # is_active : bool
-    # is_delete : bool
 
     class Config:
         orm_mode=True

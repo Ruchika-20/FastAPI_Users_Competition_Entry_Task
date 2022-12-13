@@ -10,11 +10,9 @@ db = SessionLocal()
 @competition.post("/competitionpost",status_code=status.HTTP_201_CREATED)
 def insert(competition:Competition_schema):
     new_competition = Competition_model(
-        name=competition.name,
-        # status=competition.status,
-        description=competition.description,
-        user_id=competition.user_id
-    )
+    name=competition.name,
+    description=competition.description,
+    user_id=competition.user_id)
     db.add(new_competition)
     db.commit()
     return {"status": 200, "message": "competition added successfully"}
@@ -25,12 +23,10 @@ def read_all():
     competition = db.query(Competition_model).all()
     return {"data": competition, "status": 200, "message": "competition get successfully"}
     
-
 @competition.get('/competition/{competition_id}', status_code=status.HTTP_200_OK)
 def read(competition_id: int):
     item = db.query(Competition_model).filter(Competition_model.id == competition_id).first()
     return {"data": item, "status": 200, "message": "competitions retrived successfully"}
-
 
 #updating the values in competition table   
 @competition.put("/competitionput/{competition_id}",status_code=status.HTTP_200_OK)
