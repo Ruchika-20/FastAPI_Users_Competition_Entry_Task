@@ -4,6 +4,7 @@ from backend.models.user_model import User_model
 from datetime import datetime
 from backend.utils.util import Common
 
+#Creating a model for the Competition
 class Competition_model(Base, Common):
     __tablename__ = "competition"
     id = Column(Integer, primary_key=True)

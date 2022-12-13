@@ -22,13 +22,13 @@ def insert(competition:Competition_schema):
 def read_all():
     competition = db.query(Competition_model).all()
     return {"data": competition, "status": 200, "message": "competition get successfully"}
-    
+
 @competition.get('/competition/{competition_id}', status_code=status.HTTP_200_OK)
 def read(competition_id: int):
     item = db.query(Competition_model).filter(Competition_model.id == competition_id).first()
     return {"data": item, "status": 200, "message": "competitions retrived successfully"}
 
-#updating the values in competition table   
+#updating the values in competition table
 @competition.put("/competitionput/{competition_id}",status_code=status.HTTP_200_OK)
 def update(competition_id:int,competition:Competition_schema):
     competition_to_update = db.query(Competition_model).filter(Competition_model.id == competition_id).first()
@@ -45,6 +45,3 @@ def delete(competition_id:int):
     db.delete(competition_to_delete)
     db.commit()
     return {"data": competition_to_delete, "status": 200, "message": "competition deleted successfully"}
-    
-    
-    

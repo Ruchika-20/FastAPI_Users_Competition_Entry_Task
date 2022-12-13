@@ -1,7 +1,7 @@
 """Table added
 
 Revision ID: 6a956d8850c2
-Revises: 
+Revises:
 Create Date: 2022-12-12 15:58:31.758895
 
 """
