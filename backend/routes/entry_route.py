@@ -1,7 +1,10 @@
-from fastapi import APIRouter,status, HTTPException
-from backend.database.database import SessionLocal
+from fastapi import APIRouter,status, HTTPException,Depends
+from backend.database.database import SessionLocal,get_db
 from backend.models.entry_model import Entry_model
 from backend.schemas.entry_schema import Entry_schema
+from backend.models.competition_model import Competition_model
+from sqlalchemy.orm import Session
+
 
 entry= APIRouter()
 db = SessionLocal()
@@ -51,3 +54,17 @@ def delete(entry_id:int):
     db.delete(entry_to_delete)
     db.commit()
     return {"data": entry_to_delete, "status": 200, "message": "entry deleted successfully"}
+
+#A new API for counting the entries
+@entry.get('/entry/{user_id}/count')
+def count_user(user_id, db: Session = Depends(get_db)):
+    competitions_entry = db.query(Competition_model.id).filter(Competition_model.user_id == user_id).all()
+    #for loop
+    competitions_entry = [competition.id for competition in competitions_entry]
+
+    #initial result is set to zero
+    result = 0
+    for competition in competitions_entry:
+        entry = (db.query(Entry_model.id).filter(Entry_model.competition_id == competition).count())
+        result += entry
+    return result
