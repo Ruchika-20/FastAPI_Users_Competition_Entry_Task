@@ -20,7 +20,6 @@ def insert(entry: Entry_schema):
         _type_: _description_
     """
     new_entry = Entry_model(
-        id=entry.id,
         title=entry.title,
         topic=entry.topic,
         state=entry.state,
@@ -46,10 +45,10 @@ def read_all():
 
 
 @entry.get("/entry/{entry_id}", status_code=status.HTTP_200_OK)
-def read(entry_id: int):
+def read(entry_id: str):
     """Reading the entry from a given id
     Args:
-        entry_id (int): _description_
+        entry_id (str): _description_
 
     Returns:
         _type_: _description_
@@ -59,11 +58,11 @@ def read(entry_id: int):
 
 
 @entry.put("/entryput/{entry_id}", status_code=status.HTTP_200_OK)
-def update(entry_id: int, entry: Entry_schema):
+def update(entry_id: str, entry: Entry_schema):
     """Updating an entry
 
     Args:
-        entry_id (int): _description_
+        entry_id (str): _description_
         entry (Entry_schema): _description_
 
     Returns:
@@ -80,11 +79,11 @@ def update(entry_id: int, entry: Entry_schema):
 
 
 @entry.delete("/entrydelete/{entry_id}")
-def delete(entry_id: int):
+def delete(entry_id: str):
     """Deleting an entry
 
     Args:
-        entry_id (int): _description_
+        entry_id (str): _description_
 
     Returns:
         _type_: _description_
@@ -102,7 +101,7 @@ def delete(entry_id: int):
 
 
 @entry.get("/entry/{user_id}/count")
-def count_user(user_id: int):
+def count_user(user_id: str):
     """A new API for counting the entries
 
     Args:

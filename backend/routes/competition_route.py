@@ -46,11 +46,11 @@ def read_all():
 
 
 @competition.get("/competition/{competition_id}", status_code=status.HTTP_200_OK)
-def read(competition_id: int):
+def read(competition_id: str):
     """Reading the data of competition table by id
 
     Args:
-        competition_id (int): _description_
+        competition_id (str): _description_
 
     Returns:
         _type_: _description_
@@ -69,11 +69,11 @@ def read(competition_id: int):
 
 
 @competition.put("/competitionput/{competition_id}", status_code=status.HTTP_200_OK)
-def update(competition_id: int, competition: Competition_schema):
+def update(competition_id: str, competition: Competition_schema):
     """updating the values in competition table
 
     Args:
-        competition_id (int): _description_
+        competition_id (str): _description_
         competition (Competition_schema): _description_
 
     Returns:
@@ -93,11 +93,11 @@ def update(competition_id: int, competition: Competition_schema):
 
 
 @competition.delete("/competitiondelete/{competition_id}")
-def delete(competition_id: int):
+def delete(competition_id: str):
     """Deleting the entry from the competition table
 
     Args:
-        competition_id (int): _description_
+        competition_id (str): _description_
 
     Returns:
         _type_: _description_

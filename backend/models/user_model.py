@@ -1,8 +1,8 @@
 from backend.database.database import Base
-from sqlalchemy import String, Boolean, Integer, Column, Date
+from sqlalchemy import String, Boolean, Column, Date
 from backend.utils.util import Common
 
-#
+
 class User_model(Base, Common):
     """Creating a model for the user
 
@@ -12,7 +12,6 @@ class User_model(Base, Common):
     """
 
     __tablename__ = "user"
-    id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     birthdate = Column(Date)
     gender = Column(String, nullable=False)

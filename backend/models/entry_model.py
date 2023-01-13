@@ -1,7 +1,8 @@
 from backend.database.database import Base
-from sqlalchemy import String, Integer, Column, ForeignKey
+from sqlalchemy import String, Column, ForeignKey
 from backend.models.competition_model import Competition_model
 from backend.utils.util import Common
+from sqlalchemy.dialects.postgresql import UUID
 
 
 class Entry_model(Base, Common):
@@ -13,9 +14,8 @@ class Entry_model(Base, Common):
     """
 
     __tablename__ = "entry"
-    id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
     topic = Column(String)
     state = Column(String)
     country = Column(String)
-    competition_id = Column(Integer, ForeignKey(Competition_model.id))
+    competition_id = Column(UUID, ForeignKey(Competition_model.id))

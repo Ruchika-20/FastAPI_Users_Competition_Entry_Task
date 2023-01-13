@@ -21,9 +21,7 @@ def insert(user: User_schema):
     Returns:
         _type_: _description_
     """
-    new_user = User_model(
-        id=user.id, name=user.name, birthdate=user.birthdate, gender=user.gender
-    )
+    new_user = User_model(name=user.name, birthdate=user.birthdate, gender=user.gender)
     db.add(new_user)
     db.commit()
 
@@ -43,11 +41,11 @@ def read_all():
 
 
 @user.get("/user/{user_id}", status_code=status.HTTP_200_OK)
-def read(user_id: int):
+def read(user_id: str):
     """Reading the user from given id
 
     Args:
-        user_id (int): _description_
+        user_id (str): _description_
 
     Returns:
         _type_: _description_
@@ -59,11 +57,11 @@ def read(user_id: int):
 
 
 @user.put("/userput/{user_id}", status_code=status.HTTP_200_OK)
-def update(user_id: int, user: User_schema):
+def update(user_id: str, user: User_schema):
     """Updating the values in the user database
 
     Args:
-        user_id (int): _description_
+        user_id (str): _description_
         user (User_schema): _description_
 
     Returns:
@@ -80,11 +78,11 @@ def update(user_id: int, user: User_schema):
 
 
 @user.delete("/userdelete/{user_id}")
-def delete(user_id: int):
+def delete(user_id: str):
     """Deleting the user entry
 
     Args:
-        user_id (int): _description_
+        user_id (str): _description_
 
     Returns:
         _type_: _description_
